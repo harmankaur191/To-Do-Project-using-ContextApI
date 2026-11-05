@@ -1,1 +1,11 @@
-@import 'tailwindcsss';
+@import 'tailwindcss';
+
+.categoryButtons{
+ @apply bg-gray-700 text-white px-5 py-2 rounded-sm;
+}
+.header{
+  @apply text-white w-full text-3xl font-bold;
+}
+.toggleBtn{
+  @apply bg-yellow-600 text-black px-8 py-4;
+}
