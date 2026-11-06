@@ -3,9 +3,11 @@ import deletebtn from '../assets/deleteTodo.png';
 import { useContext, useState } from 'react';
 import { TodoContext } from '../context/TodoContext';
 import { ThemeContext } from '../context/ThemeContext';
+import { FilterContext } from '../context/FilterContext';
 
 export default function TaskListItem({ task }) {
     const {theme} =useContext(ThemeContext)
+    const {filter} = useContext(FilterContext)
     const {toggleTodo,deleteTodo,editTodo}=useContext(TodoContext)
     const [editText, setEditText]=useState(task?task.text:'');
     const [isEditing,setIsEditing]=useState(false);
@@ -45,7 +47,7 @@ export default function TaskListItem({ task }) {
         ):(
         <li key={task.id}className={style}>{task.text}  
         </li>)}
-                <button id='editTask'  type='submit'onClick={()=>{setIsEditing(true)}}><img src={edit} className='max-w-[20px]' /></button>
+        <button id='editTask'  type='submit'onClick={()=>{setIsEditing(true)}}><img src={edit} className='max-w-[20px]' /></button>
         <button id='deleteTask' type='submit' onClick={handledelete}><img src={deletebtn} className='max-w-[20px]' /></button>
         </div>
     )
