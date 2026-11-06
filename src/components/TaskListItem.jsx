@@ -1,11 +1,16 @@
 import edit from '../assets/edit.png'
 import deletebtn from '../assets/deleteTodo.png';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { TodoContext } from '../context/TodoContext';
+import { ThemeContext } from '../context/ThemeContext';
+
 export default function TaskListItem({ task }) {
-    const {toggleTodo,deleteTodo}=useContext(TodoContext)
-    const style = 'text-white  '
-    console.log(task)
+    const {theme} =useContext(ThemeContext)
+    const {toggleTodo,deleteTodo,editTodo}=useContext(TodoContext)
+    const [editText, setEditText]=useState(task?task.text:'');
+    const [isEditing,setIsEditing]=useState(false);
+    const style = theme ==='dark'?'text-white bg-gray-800':'text-black';
+
     const handleToggle=()=>{
       
             toggleTodo(task.id)
@@ -16,13 +21,32 @@ export default function TaskListItem({ task }) {
         deleteTodo(task.id)
 
     }
-    console.log(task.completed)
-    return (<div className='flex flex-row gap-20'>
+
+    const handleEdit=(e)=>{
+
+       if(editText!==''){
+        editTodo(task.id, editText);
+        setIsEditing(false);
+       }
+    }
+    
+    const handleKeyDown=(e)=>{
+        if(e.key==='Enter'){
+            handleEdit();
+        }
+
+    }
+    
+    return (<div className={`${style} w-full flex flex-row gap-20 border-b border-gray-900 p-5`}>
+        
         <input type='checkbox' id='checkbox' onChange={handleToggle} checked={task.completed}/>
-        <li className={style} key={task.id}>{task.text}{task.completed?'True':'false'}  
-        </li>
-        <button id='editTask' type='submit'><img src={edit} className='max-w-[20px]' /></button>
-            <button id='deleteTask' type='submit' onClick={handledelete}><img src={deletebtn} className='max-w-[20px]' /></button>
-    </div>
+        {isEditing?( 
+            <input type='text' value={editText} onChange={(e)=>{setEditText(e.target.value)}} onKeyDown={handleKeyDown} onBlur={handleEdit} className='bg-gray-800'/>
+        ):(
+        <li key={task.id}className={style}>{task.text}  
+        </li>)}
+                <button id='editTask'  type='submit'onClick={()=>{setIsEditing(true)}}><img src={edit} className='max-w-[20px]' /></button>
+        <button id='deleteTask' type='submit' onClick={handledelete}><img src={deletebtn} className='max-w-[20px]' /></button>
+        </div>
     )
 }

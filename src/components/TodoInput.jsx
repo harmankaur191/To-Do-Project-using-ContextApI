@@ -15,7 +15,7 @@ export default function TodoInput() {
         }
     }
     
-console.log(tasks);
+
     const style= theme === 'dark'? 'bg-gray-700 text-white':'bg-white text-black'
     return (<div className="flex gap-2">
         <input type="text" id='taskInput' className={`${style} rounded-sm p-2 text-sm min-w-[350px]`} placeholder="What needs to be done?"  required />
