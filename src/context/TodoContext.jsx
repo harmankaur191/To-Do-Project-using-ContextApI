@@ -14,14 +14,18 @@ const addTodo=(text)=>{
 
 const toggleTodo=(id)=>{
     setTasks(tasks.map((task)=>task.id===id?{...task,completed:!task.completed}:task))
+   
     };
-
+const deleteTodo=(id)=>{
+    setTasks(tasks.filter((task)=>task.id!==id))
+    
+}
 
 
 
 console.log(tasks)
     return(
-        <TodoContext.Provider value={{tasks,addTodo, toggleTodo}}>
+        <TodoContext.Provider value={{tasks,addTodo, toggleTodo,deleteTodo}}>
             {children}
         </TodoContext.Provider>
     )
