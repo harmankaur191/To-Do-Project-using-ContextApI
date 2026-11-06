@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 export const TodoContext =createContext();
 export function TodoProvider({children}){
 const [tasks, setTasks]=useState([]);
+
 const addTodo=(text)=>{
     const newTask={
         id:Date.now(),
@@ -10,9 +11,17 @@ const addTodo=(text)=>{
     };
     setTasks((prev)=>[...prev,newTask]);
 };
+
+const toggleTodo=(id)=>{
+    setTasks(tasks.map((task)=>task.id===id?{...task,completed:!task.completed}:task))
+    };
+
+
+
+
 console.log(tasks)
     return(
-        <TodoContext.Provider value={{tasks,addTodo}}>
+        <TodoContext.Provider value={{tasks,addTodo, toggleTodo}}>
             {children}
         </TodoContext.Provider>
     )

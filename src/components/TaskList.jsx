@@ -3,6 +3,7 @@ import { TodoContext } from "../context/TodoContext";
 import { useContext } from "react";
 export default function TaskList(){
     const {tasks = []} =useContext(TodoContext);
+    const style='border-gray border-1 w-full place-items-start p-5'
     if(tasks.length===0){
         console.log(tasks.length);
         return(
@@ -12,7 +13,7 @@ export default function TaskList(){
         )
     }
     return(
-        <ul>
+        <ul className={style}>
             {tasks?.map((task)=>{
               return  <TaskListItem key={task.id} task={task}/>
             })}

@@ -3,15 +3,18 @@ import { TodoContext } from "../context/TodoContext";
 import { useContext } from "react";
 export default function TodoInput() {
     const {theme, toggleTheme}=useContext(ThemeContext);
-    const {tasks, addTodo}=useContext(TodoContext);
+    const {tasks, addTodo, toggleTodo}=useContext(TodoContext);
+    
 
     const handleSubmit = (e)=>{
         if(e.target.id === 'addTask'){
             const todoInput = document.getElementById('taskInput');
             const value=todoInput.value;
             addTodo(value);
+            todoInput.value='';
         }
     }
+    
 console.log(tasks);
     const style= theme === 'dark'? 'bg-gray-700 text-white':'bg-white text-black'
     return (<div className="flex gap-2">
