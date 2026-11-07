@@ -1,8 +1,13 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 export const TodoContext = createContext();
 export function TodoProvider({ children }) {
-    const [tasks, setTasks] = useState([]);
-
+    const [tasks, setTasks] = useState(()=>{
+        const savedTodos =localStorage.getItem('todos');
+        return savedTodos? JSON.parse(savedTodos):[];
+    });
+    useEffect(()=>{
+        localStorage.setItem('todos',JSON.stringify(tasks));
+    },[tasks])
     const addTodo = (text) => {
         const newTask = {
             id: Date.now(),

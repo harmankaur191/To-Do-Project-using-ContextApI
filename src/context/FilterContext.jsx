@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 export const FilterContext = createContext() ;
 export function FilterProvider({children}){
-    const [filter, setFilter]=useState('active');
+    const [filter, setFilter]=useState('all');
     const filterTodo=(filter)=>{
         setFilter(filter)
     };

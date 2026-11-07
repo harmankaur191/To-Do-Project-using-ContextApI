@@ -15,7 +15,7 @@ export default function App() {
   return (
     <TodoProvider>
       <FilterProvider>
-        <div className={`flex flex-col min-h-screen p-10 gap-10 place-items-center ${theme === 'light' ? 'bg-gray-200 text-black' : 'bg-black text-white'}`}>
+        <div className={`flex flex-col min-h-screen p-10 gap-10 place-items-center border-gray border-1 ${theme === 'light' ? 'bg-gray-200 text-black' : 'bg-gray-900 text-white'}`}>
           <div className="flex gap-5 border-b border-gray-800 p-10">
             <Header /><ToggleButton />
           </div>

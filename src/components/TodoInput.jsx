@@ -19,6 +19,6 @@ export default function TodoInput() {
     const style= theme === 'dark'? 'bg-gray-700 text-white':'bg-white text-black'
     return (<div className="flex gap-2">
         <input type="text" id='taskInput' className={`${style} rounded-sm p-2 text-sm min-w-[350px]`} placeholder="What needs to be done?"  required />
-        <button type='submit' id='addTask' onClick = {handleSubmit} className="bg-blue-600 text-white px-5 py-1.5 rounded-sm hover:bg-blue-800" >Add Too</button>
+        <button type='submit' id='addTask' onClick = {handleSubmit} className="bg-blue-600 text-white px-5 py-1.5 rounded-sm hover:bg-blue-800" >Add Todo</button>
     </div>)
 }
