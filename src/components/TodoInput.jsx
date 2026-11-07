@@ -9,9 +9,15 @@ export default function TodoInput() {
     const handleSubmit = (e)=>{
         if(e.target.id === 'addTask'){
             const todoInput = document.getElementById('taskInput');
+           
             const value=todoInput.value;
-            addTodo(value);
+             if(value!==''){
+                addTodo(value);
             todoInput.value='';
+             }
+            else{
+                error;
+            }
         }
     }
     

@@ -42,7 +42,7 @@ export default function TaskListItem({ task }) {
         <div className='flex gap-3'>
             <input type='checkbox' id='checkbox' onChange={handleToggle} checked={task.completed} />
             {isEditing ?
-                <input type='text' value={editText} onChange={(e) => { setEditText(e.target.value) }} onKeyDown={handleKeyDown} onBlur={handleEdit} className='bg-gray-800 border-white border-1' autoFocus/>
+                <input type='text' value={editText} onChange={(e) => { setEditText(e.target.value) }} onKeyDown={handleKeyDown} onBlur={handleEdit} className={`${theme==='dark'? 'bg-gray-800 border-white border-1': 'bg-white border-black border-1'}`} autoFocus/>
 
             : (
                 <li key={task.id} className={`${style}  `}>{task.text}

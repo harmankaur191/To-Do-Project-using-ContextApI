@@ -2,7 +2,9 @@ import TaskListItem from "./TaskListItem";
 import { TodoContext } from "../context/TodoContext";
 import { useContext } from "react";
 import { FilterContext } from "../context/FilterContext";
+import { ThemeContext } from "../context/ThemeContext";
 export default function TaskList(){
+    const {theme}=useContext(ThemeContext);
     const {tasks = []} =useContext(TodoContext);
     const {filter} = useContext(FilterContext);
     const style='border-gray border-1 w-full place-items-start p-5'
@@ -29,7 +31,7 @@ export default function TaskList(){
     })
     if(filteredTasks.length===0)
     {
-        return(<span className="text-gray-300 text-xl"><em>No {filter} todos.</em></span>)
+        return(<span className={`${theme==='dark'? 'bg-gray-800 border-white border-1': 'bg-white border-black border-1'}"text-gray-300 text-xl"`}><em>No {filter} todos.</em></span>)
     }
     return(
         <ul className={style}>
